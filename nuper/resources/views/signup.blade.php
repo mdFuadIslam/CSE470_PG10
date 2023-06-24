@@ -8,11 +8,11 @@
 <body>
     <form method='POST' action='newUser'>
         @csrf
-        <label for="name">username:</label>
+        <label for="name">Username:</label>
         <input type="text" id="username" name="username"><br>
-        <label for="mail">e-mail:</label>
+        <label for="mail">E-mail:</label>
         <input type="text" id="email" name="email"><br>
-        <label for="password">password:</label>
+        <label for="password">Password:</label>
         <input type="text" id="password" name="password"><br>
         <input type="submit" value="Submit">
     </form>

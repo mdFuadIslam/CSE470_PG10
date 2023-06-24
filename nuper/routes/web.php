@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Db;
+use App\Http\Controllers\userHandler;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +19,6 @@ Route::get('/', function () {
 });
 
 Route::get('/signup', function () {return view('signup');});
-Route::post('newUser',[Db::class,'addToTable']);
+Route::post('newUser',[userHandler::class,'newUser']);
+Route::get('/home', function () {return view('welcome');});
+Route::get('/error/{id}', [userHandler::class,'error']);

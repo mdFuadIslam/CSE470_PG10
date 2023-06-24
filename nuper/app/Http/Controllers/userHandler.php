@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\userlist;
-#use Illuminate\Support\Facades\DB;
- 
+use Illuminate\Support\Facades\DB;
 
-class Db extends Controller
+class userHandler extends Controller
 {
     //
     function newUser(Request $req){
@@ -18,13 +17,10 @@ class Db extends Controller
                 if (preg_match($pattern, $username)==0){
                     $pattern = "/\b[a-z]+([a-z]*|[0-9]*)*/i";
                     if (preg_match($pattern, $username)==1){
-                        $users = DB::table('userlists')->get();
-                        foreach ($users as $user) {
-                            if  ($user->name==$username){
-                                return False;
-                            }
+                        $users = DB::select("select * from userlists where username='$username'");
+                        if (!empty($users)){
+                            return False;
                         }
-                        #check if username already exist or not
                         return True;
                     }
                 }
@@ -38,9 +34,12 @@ class Db extends Controller
                 if (preg_match($pattern, $email)==0){
                     $pattern = "/\b[a-z]([a-z]|[0-9])*@[a-z]+[.][a-z]([a-z]*|([.][a-z]))*/i";
                     if (preg_match($pattern, $email)==1){
-                        #check if email already exist or not
-                        #verify via otp
+                        $users = DB::select("select * from userlists where email='$email'");
+                        if (!empty($users)){
+                            return False;
+                        }
                         return True;
+                        #verify email via otp
                     }
                 }
             }
@@ -51,6 +50,9 @@ class Db extends Controller
             if (!empty($password)){
                 $pattern="/\s/i";
                 if (preg_match($pattern, $password)==0){
+                    if (strlen($password)<6){
+                        return False;
+                    }
                     return True;
                 }
             }
