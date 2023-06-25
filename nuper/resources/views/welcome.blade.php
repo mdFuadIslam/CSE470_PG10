@@ -17,7 +17,7 @@
     else{
        echo "Welcome,'$username'<br>";
        echo "<a href='$username/viewProfile'>View Profile</a>  ";
-       echo "<a href='$username/businessCreation'>Create a Businesss</a>  ";
+       echo "<a href='$username/business'>Business</a>  ";
        echo "<a href='$username/logout'>log Out</a>  ";
     }
     ?>

@@ -27,6 +27,7 @@ Route::get('/error/{id}', [userHandler::class,'error']);
 Route::get('login', function () {return view('login');});
 Route::post('login',[userHandler::class,'login']);
 Route::get('home/{id}/logout', function () {return redirect('/');});
+Route::get('home/{id}/business', function () {return view ('viewBusiness');});
 Route::get('home/{id}/businessCreation/', [userHandler::class,'passUsername']);
 Route::post('home/{id}/createBusiness',[userHandler::class,'createBusiness']);
 Route::get('home/{id}',[userHandler::class,'home']);
