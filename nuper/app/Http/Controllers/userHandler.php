@@ -70,7 +70,7 @@ class userHandler extends Controller
                     $data->password=$req->password;
                     $data->type='REG';
                     $data->save();
-                    return redirect('home');
+                    return redirect('login');
                 }
                 else{
                     $error=3;
@@ -98,6 +98,36 @@ class userHandler extends Controller
         if ($error==3){
             return view ('error',['error'=>'Invalid password!! Has to be atleast 6 digit long']);
         }
+        if ($error==4){
+            return view ('error',['error'=>'Wrong Passwword!!']);
+        }
+        if ($error==5){
+            return view ('error',['error'=>'No user found!!']);
+        }
         return view ('error',['error'=>'Do not know what went wrong..']);
+    }
+
+    function login(Request $req){
+        $username=$req->username;
+        $users = userlist::find($username);
+        if (!empty($users)){
+            $tmpPass=$req->password;
+            if ($users->password==$tmpPass){
+                return view('welcome',['username'=>$username]);
+                #return redirect ("user/$username");
+            }
+            else{
+                $error=4;
+                return redirect ("error/$error");
+            }
+        }
+        else{
+            $error=5;
+            return redirect ("error/$error");
+        }
+    }
+
+    function loggedInterface($username){
+        return view('welcome',['username'=>$username]);
     }
 }
