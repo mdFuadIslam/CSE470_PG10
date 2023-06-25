@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\userlist;
+use App\Models\pendingbusinessapplication;
 use Illuminate\Support\Facades\DB;
 
 class userHandler extends Controller
@@ -113,8 +114,8 @@ class userHandler extends Controller
         if (!empty($users)){
             $tmpPass=$req->password;
             if ($users->password==$tmpPass){
-                return view('welcome',['username'=>$username]);
-                #return redirect ("user/$username");
+                #return view('welcome',['username'=>$username]);
+                return redirect ("home/$username");
             }
             else{
                 $error=4;
@@ -127,7 +128,26 @@ class userHandler extends Controller
         }
     }
 
-    function loggedInterface($username){
+    function createBusiness(Request $req){
+        $data= new pendingBusinessApplication;
+        $username=$req->username;
+        $data->username=$req->username;
+        $data->name=$req->businessname;
+        $data->address=$req->address;
+        $data->picture=$req->img;
+        $data->proof=$req->file;
+        $data->save();
+        return redirect("home/$username");
+        #return view('welcome',['username'=>$username]);
+    }
+
+    function passUsername($username){
+        return view('businessCreation',['username'=>$username]);
+    }
+    
+    function home($username){
         return view('welcome',['username'=>$username]);
     }
 }
+
+
