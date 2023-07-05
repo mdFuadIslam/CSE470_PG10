@@ -93,19 +93,17 @@
                         <ul class="right_icon d_none1">
                         <?php
                             if (empty($username)){
-                            ?>
+                        ?>
                             <a href='signup'>Sign Up</a>
                              / 
                             <a href='login'>Login</a>
                             <br>
-                            <?php
+                        <?php
                             }
                             else{
+                        ?>
                                echo "Welcome,'$username'<br>";
-                               echo "<a href='$username/viewProfile'>View Profile</a>  ";
-                               echo "<a href='$username/business'>Business</a>  ";
-                               echo "<a href='$username/logout'>log Out</a>  ";
-                            }
+                        <?php    }
                         ?>
                         </ul>
                      </div>
