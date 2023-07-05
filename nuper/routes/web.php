@@ -12,10 +12,6 @@ use App\Http\Controllers\userHandler;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
-
-#can username be passed onto other pages?
-#'remember me' feature can be added.
-
 */
 
 Route::get('/', function () {return view('welcome');});
