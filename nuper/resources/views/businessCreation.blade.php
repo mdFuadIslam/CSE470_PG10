@@ -1,3 +1,4 @@
+<x-app-layout>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +7,7 @@
     <title>Set-up Business</title>
 </head>
 <body>  
+    {{$username=Auth::user()->name;}}
     <form method='POST' action='createBusiness'>
         @csrf
         <label for="name">Business Name:</label>
@@ -21,3 +23,4 @@
     </form>
 </body>
 </html>
+</x-app-layout>
