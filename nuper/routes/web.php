@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\userHandler;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,16 +14,20 @@ use App\Http\Controllers\userHandler;
 |
 */
 
-Route::get('/', function () {return view('welcome');});
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::get('/signup', function () {return view('signup');});
-Route::post('newUser',[userHandler::class,'newUser']);
-#Route::get('/home', function () {return view('welcome');});
-Route::get('/error/{id}', [userHandler::class,'error']);
-Route::get('login', function () {return view('login');});
-Route::post('login',[userHandler::class,'login']);
-Route::get('home/{id}/logout', function () {return redirect('/');});
-Route::get('home/{id}/business', function () {return view ('viewBusiness');});
-Route::get('home/{id}/businessCreation/', [userHandler::class,'passUsername']);
-Route::post('home/{id}/createBusiness',[userHandler::class,'createBusiness']);
-Route::get('home/{id}',[userHandler::class,'home']);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
+
+Route::view("test","login");
