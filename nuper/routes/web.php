@@ -32,10 +32,11 @@ Route::get('/sell', function () {return view('sell');})->middleware(['auth', 've
 Route::get('/rent', function () {return view('rent');})->middleware(['auth', 'verified'])->name('rent');
 Route::get('/request', function () {return view('request');})->middleware(['auth', 'verified'])->name('request');
 Route::get('/auction', function () {return view('auction');})->middleware(['auth', 'verified'])->name('auction');
-Route::get('/active', function () {return view('active');})->middleware(['auth', 'verified'])->name('active');
-Route::get('/application', function () {return view('application');})->middleware(['auth', 'verified'])->name('application');
+Route::get('/active', [ProfileController::class,'active'])->middleware(['auth', 'verified'])->name('active');
+Route::get('/application', [ProfileController::class,'application'])->middleware(['auth', 'verified'])->name('application');
 Route::get('/businessCreation', function () {return view('businessCreation');})->middleware(['auth', 'verified'])->name('businessCreation');
-
+Route::post('createBusiness',[ProfileController::class, 'createBusiness'])->middleware(['auth', 'verified'])->name('createBusiness');
+Route::post('approval',[ProfileController::class, 'approval'])->middleware(['auth', 'verified'])->name('approval');
 
 require __DIR__.'/auth.php';
 
