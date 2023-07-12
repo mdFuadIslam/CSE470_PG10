@@ -38,6 +38,9 @@
                     <x-nav-link :href="route('application')" :active="request()->routeIs('application')">
                         {{ __('Pending applications') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                        {{ __('Home') }}
+                    </x-nav-link>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <x-nav-link :href="route('logout')"

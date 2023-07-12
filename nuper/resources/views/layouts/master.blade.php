@@ -63,19 +63,6 @@
                            </li>
                         </ul>
                      </div>
-                     <div class="col-md-4">
-                        <div class="se_fonr1">
-                           <form action="#" >
-                              <div class="select-box">
-                                 <label for="select-box1" class="label select-box1"><span class="label-desc">Buy</span> </label>
-                                 <select id="select-box1" class="select">
-                                    <option value="Choice 1">Buy</option>
-                                    <option value="Choice 2">Sell</option>
-                                 </select>
-                              </div>
-                           </form>
-                        </div>
-                     </div>
                   </div>
                </div>
             </div>
