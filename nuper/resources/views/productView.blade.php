@@ -31,6 +31,13 @@
                   <input type="hidden" name="duration" id="duration" value="00:00:00">
                   <input type="submit" name="add to cart" value="add to cart">
                 </form>
+                <form method="post" action="{{ url('/addToWishlist') }}">
+                  @csrf
+                  <input type="hidden" name="pId" id="pId" value="{{$data->saleId}}">
+                  <input type="hidden" name="username" id="username" value="{{$data->username}}">
+                  <input type="hidden" name="type" id="type" value="0">
+                  <input type="submit" name="add to wishlist" value="add to wishlist">
+                </form>
             </div>
       @endforeach
       </div>

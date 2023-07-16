@@ -9,6 +9,7 @@ use App\Models\active;
 use App\Models\rent;
 use App\Models\cart;
 use App\Models\sale;
+use App\Models\wishlist;
 
 class SaleManagement extends Controller
 {
@@ -48,5 +49,26 @@ class SaleManagement extends Controller
         $username=$user->name;
         $data=DB::select("select * from carts where username='$username'");
         return view('cart',['data'=>$data]);
+    }
+    function addToWishlist(Request $request){
+        $datathree=DB::table('wishlists')->where('pId', $request->pId)->where('username', $request->username)->get();
+        #echo $datathree;
+        if ($datathree->isEmpty()){
+            $data= new wishlist;
+            $data->username=$request->username;
+            $data->pId=$request->pId;
+            $id=$request->pId;
+            $type=$request->type;
+            if ($type==0){
+                $datatwo=DB::table('sales')->where('saleId', $id)->first();
+                $count=$datatwo->wishlist;
+                #$count=int($count);
+                $count=$count+1;
+                #$count=str($count);
+                $dataone=DB::table('sales')->where('saleId',$id)->update(['wishlist'=>$count]);
+            }
+            $data->save();
+        }
+        return redirect("productView/$request->pId");
     }
 }

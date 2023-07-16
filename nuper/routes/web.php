@@ -51,5 +51,6 @@ Route::get('productView/{id}',[SaleManagement::class,'showProduct']);
 
 Route::get('/sell', function () {return view('sell');})->middleware(['auth', 'verified'])->name('sell');
 Route::post('addToCart', [SaleManagement::class,'addToCart'])->middleware(['auth', 'verified'])->name('addToCart');
+Route::post('addToWishlist', [SaleManagement::class,'addToWishlist'])->middleware(['auth', 'verified'])->name('addToWishlist');
 
 Route::get("cart",[SaleManagement::class,"cart"])->middleware(['auth', 'verified'])->name('cart');
