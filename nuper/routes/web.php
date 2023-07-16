@@ -15,9 +15,15 @@ use App\Http\Controllers\SaleManagement;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $data=DB::select("select * from sales limit 5");
+    $datatwo=DB::select("select * from rents limit 5");
+    return view("welcome",['sellProducts'=>$data,'rentProducts'=>$datatwo]);
 });
-Route::get('/home', function () {return view('welcome');})->middleware(['auth', 'verified'])->name('home');
+Route::get('/home', function () {
+    $data=DB::select("select * from sales limit 5");
+    $datatwo=DB::select("select * from rents limit 5");
+    return view("welcome",['sellProducts'=>$data,'rentProducts'=>$datatwo]);
+})->middleware(['auth', 'verified'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -29,7 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/sell', function () {return view('sell');})->middleware(['auth', 'verified'])->name('sell');
+
 Route::get('/rent', function () {return view('rent');})->middleware(['auth', 'verified'])->name('rent');
 Route::get('/request', function () {return view('request');})->middleware(['auth', 'verified'])->name('request');
 Route::get('/auction', function () {return view('auction');})->middleware(['auth', 'verified'])->name('auction');
@@ -41,4 +47,9 @@ Route::post('approval',[ProfileController::class, 'approval'])->middleware(['aut
 Route::post('createSale',[SaleManagement::class, 'createSale'])->middleware(['auth', 'verified'])->name('createSale');
 require __DIR__.'/auth.php';
 
-Route::view("test","login");
+Route::get('productView/{id}',[SaleManagement::class,'showProduct']);
+
+Route::get('/sell', function () {return view('sell');})->middleware(['auth', 'verified'])->name('sell');
+Route::post('addToCart', [SaleManagement::class,'addToCart'])->middleware(['auth', 'verified'])->name('addToCart');
+
+Route::get("cart",[SaleManagement::class,"cart"])->middleware(['auth', 'verified'])->name('cart');
