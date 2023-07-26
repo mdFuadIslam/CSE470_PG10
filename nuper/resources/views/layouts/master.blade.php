@@ -34,11 +34,6 @@
    </head>
    <!-- body -->
    <body class="main-layout">
-      <!-- loader  -->
-      <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="#" /></div>
-      </div>
-      <!-- end loader -->
       <!-- header -->
       <header>
          <!-- header inner -->
@@ -105,7 +100,7 @@
                                     <a class="nav-link" href="auction">Auction</a>
                                  </li>
                                  <li class="nav-item">
-                                    <a class="nav-link" href="thread">Thread</a>
+                                    <a class="nav-link" href="{{ url('thread')}}">Thread</a>
                                  </li>
                                  <li class="nav-item">
                                     <a class="nav-link" href="#myFooter">Contact Us</a>

@@ -17,7 +17,7 @@
                      </div>
                      <div class="col-md-7">
                         <div class="news_text">
-                           <h3>Specimen book. It has survived not only five</h3>
+                           <h3>Specimen book t1. It has survived not only five</h3>
                            <span>7 July 2019</span> 
                            <div class="date_like">
                               <span>Like </span><span class="pad_le">Comment</span>

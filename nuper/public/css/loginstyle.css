@@ -20,3 +20,15 @@ input[type=email] {
   border: none;
   border-bottom: 2px solid red;
 }
+
+.rightButton{
+  float: right;
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}

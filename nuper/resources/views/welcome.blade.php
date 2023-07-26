@@ -72,5 +72,4 @@
       @include('featureAuction')
       <!-- end fashion section -->
       <!-- news section -->
-      @include('featureThreads')
 @endsection

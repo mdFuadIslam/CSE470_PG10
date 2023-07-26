@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SaleManagement;
+use App\Http\Controllers\ForumManagement;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,3 +55,15 @@ Route::post('addToCart', [SaleManagement::class,'addToCart'])->middleware(['auth
 Route::post('addToWishlist', [SaleManagement::class,'addToWishlist'])->middleware(['auth', 'verified'])->name('addToWishlist');
 
 Route::get("cart",[SaleManagement::class,"cart"])->middleware(['auth', 'verified'])->name('cart');
+
+Route::get("thread",[ForumManagement::class,"thread"]);
+Route::view("createThread","createThread")->middleware(['auth', 'verified'])->name('createThread');
+Route::post("createThread",[ForumManagement::class,"createThread"])->middleware(['auth', 'verified'])->name('createThread');
+Route::get("thread/{id}",[ForumManagement::class,"threadView"]);
+Route::post("thread/comment",[ForumManagement::class,"comment"])->middleware(['auth', 'verified'])->name('comment');
+Route::post("thread/deleteThread",[ForumManagement::class,"deleteThread"])->middleware(['auth', 'verified'])->name('deleteThread');
+Route::post("thread/ban",[ForumManagement::class,"ban"])->middleware(['auth', 'verified'])->name('ban');
+Route::get ("thread/thread",function () {return redirect('thread');});
+Route::get("latestThread",[ForumManagement::class,"latestThread"]);
+Route::get("oldestThread",[ForumManagement::class,"oldestThread"]);
+Route::post("searchThread",[ForumManagement::class,"searchThread"]);
