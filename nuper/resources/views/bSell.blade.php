@@ -1,7 +1,7 @@
 <x-app-layout>
 <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Rent Item') }}
+            {{ __('Sell Item from Business') }}
         </h2>
     </x-slot>
 
@@ -10,12 +10,10 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                 {{$username=Auth::user()->name;}}
-                <form method='POST' action='createRent'>
+                <form method='POST' action='createSaleB'>
                     @csrf
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name"><br>
-                    <label for="name">Duration (year-month-date hour:minute:seconds):</label>
-                    <input type="text" id="duration" name="duration"><br>
                     <label for="description">description:</label>
                     <input type="text" id="description" name="description"><br>
                     <label for="picture">Picture:</label>

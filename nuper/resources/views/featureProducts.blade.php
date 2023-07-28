@@ -13,7 +13,7 @@
                   @foreach ($sellProducts as $data)
                   <div class="project_box ">
                      <div class="dark_white_bg" ><ul><img  src="{{$data->imgUrl}}" alt="#"/></ul></div>
-                     <h3><ul><a href='productView/{{$data->saleId}}'>{{$data->name}}</a></ul> <ul>{{$data->price}}</ul></h3>
+                     <h3><ul>Sale</ul><ul><a href='productView/{{$data->saleId}}'>{{$data->name}}</a></ul> <ul>Price: {{$data->price}}</ul></h3>
                   </div>
                   @endforeach
             </div>
@@ -32,7 +32,7 @@
                   @foreach ($rentProducts as $data)
                   <div class="project_box ">
                      <div class="dark_white_bg" ><ul><img  src="{{$data->imgUrl}}" alt="#"/></ul></div>
-                     <h3><ul><a href='product/{{$data->rentId}}'>{{$data->name}}</a></ul> <ul>{{$data->duration}}</ul> <ul>{{$data->price}}</ul></h3>
+                     <h3><ul><a href='rentView/{{$data->rentID}}'>{{$data->name}}</a></ul> <ul>Till: {{$data->duration}}</ul> <ul>Price(per week): {{$data->price}}</ul></h3>
                   </div>
                   @endforeach
             </div>

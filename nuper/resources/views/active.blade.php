@@ -18,6 +18,11 @@
                             <th> {{$username=$user->username}} </th>
                             <th> {{$names=$user->businessName}} </th>
                             <th> {{$address=$user->location}} </th>
+                            <th><form action='bSellItem' method='post'>
+                                @csrf
+                                <input type='hidden' name='id' id='id' value='$user->bId'>
+                                <input type='submit' name='sellItem' value='sellItem'>
+                            </form></th>
                         </tr>
                         @endforeach
                     </table>

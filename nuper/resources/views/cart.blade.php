@@ -30,7 +30,7 @@
                             <th> {{$item->price}} </th>
                             <?php 
                                 $duration=$item->duration;
-                                if ($duration=='00:00:00'){  
+                                if ($duration=='0000-00-00 00:00:00'){  
                                     echo "<th>Permanent</th>";
                                 }
                                 else{

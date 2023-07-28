@@ -91,10 +91,10 @@
                                     <a class="nav-link" href="/">Home</a> <!--problem 1.1-->
                                  </li>
                                  <li class="nav-item">
-                                    <a class="nav-link" href="#myFooter">About</a>
+                                    <a class="nav-link" href="{{ url('rents')}}">Rent</a>
                                  </li>
                                  <li class="nav-item">
-                                    <a class="nav-link" href="product">Products</a>
+                                    <a class="nav-link" href="{{ url('products')}}">Products</a>
                                  </li>
                                  <li class="nav-item">
                                     <a class="nav-link" href="auction">Auction</a>

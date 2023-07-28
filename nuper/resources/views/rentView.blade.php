@@ -23,19 +23,19 @@
          <div><ul><img  src="{{$data->imgUrl5}}" alt="#"/></ul></div></h3>
          <form method="post" action="{{ url('/addToCart') }}">
            @csrf
-           <input type="hidden" name="pId" id="pId" value="{{$data->saleId}}">
+           <input type="hidden" name="pId" id="pId" value="{{$data->rentID}}">
            <input type="hidden" name="username" id="username" value="{{$data->username}}">
            <input type="hidden" name="name" id="name" value="{{$data->name}}">
            <input type="hidden" name="price" id="price" value="{{$data->price}}">
-           <input type="hidden" name="type" id="type" value="0">
-           <input type="hidden" name="duration" id="duration" value="0000-00-00 00:00:00">
+           <input type="hidden" name="type" id="type" value="1">
+           <input type="hidden" name="duration" id="duration" value="{{$data->duration}}">
            <input type="submit" name="add to cart" value="add to cart">
          </form>
          <form method="post" action="{{ url('/addToWishlist') }}">
            @csrf
-           <input type="hidden" name="pId" id="pId" value="{{$data->saleId}}">
+           <input type="hidden" name="pId" id="pId" value="{{$data->rentID}}">
            <input type="hidden" name="username" id="username" value="{{$data->username}}">
-           <input type="hidden" name="type" id="type" value="0">
+           <input type="hidden" name="type" id="type" value="1">
            <input type="submit" name="add to wishlist" value="add to wishlist">
          </form>
       @endforeach

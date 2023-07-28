@@ -36,25 +36,34 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-Route::get('/rent', function () {return view('rent');})->middleware(['auth', 'verified'])->name('rent');
-Route::get('/request', function () {return view('request');})->middleware(['auth', 'verified'])->name('request');
-Route::get('/auction', function () {return view('auction');})->middleware(['auth', 'verified'])->name('auction');
 Route::get('/active', [ProfileController::class,'active'])->middleware(['auth', 'verified'])->name('active');
 Route::get('/application', [ProfileController::class,'application'])->middleware(['auth', 'verified'])->name('application');
 Route::get('/businessCreation', function () {return view('businessCreation');})->middleware(['auth', 'verified'])->name('businessCreation');
 Route::post('createBusiness',[ProfileController::class, 'createBusiness'])->middleware(['auth', 'verified'])->name('createBusiness');
 Route::post('approval',[ProfileController::class, 'approval'])->middleware(['auth', 'verified'])->name('approval');
-Route::post('createSale',[SaleManagement::class, 'createSale'])->middleware(['auth', 'verified'])->name('createSale');
-require __DIR__.'/auth.php';
 
-Route::get('productView/{id}',[SaleManagement::class,'showProduct']);
+Route::get('/request',[SaleManagement::class,'request'])->middleware(['auth', 'verified'])->name('request');
+Route::view("createRequest","createRequest")->middleware(['auth', 'verified'])->name('createRequest');
+Route::post("createRequest",[SaleManagement::class,"createRequest"])->middleware(['auth', 'verified'])->name('createRequest');
+Route::get("request/{id}",[SaleManagement::class,"requestView"])->middleware(['auth', 'verified']);
 
-Route::get('/sell', function () {return view('sell');})->middleware(['auth', 'verified'])->name('sell');
+Route::get('/auction', function () {return view('auction');})->middleware(['auth', 'verified'])->name('auction');
+
+Route::get("cart",[SaleManagement::class,"cart"])->middleware(['auth', 'verified'])->name('cart');
 Route::post('addToCart', [SaleManagement::class,'addToCart'])->middleware(['auth', 'verified'])->name('addToCart');
 Route::post('addToWishlist', [SaleManagement::class,'addToWishlist'])->middleware(['auth', 'verified'])->name('addToWishlist');
 
-Route::get("cart",[SaleManagement::class,"cart"])->middleware(['auth', 'verified'])->name('cart');
+Route::get('/rent', function () {return view('rent');})->middleware(['auth', 'verified'])->name('rent');
+Route::post('createRent',[SaleManagement::class, 'createRent'])->middleware(['auth', 'verified'])->name('createRent');
+Route::get('rentView/{id}',[SaleManagement::class,'showRent']);
+Route::get ('rents',[SaleManagement::class,'rentPage']);
+
+Route::post('createSale',[SaleManagement::class, 'createSale'])->middleware(['auth', 'verified'])->name('createSale');
+Route::get('/sell', function () {return view('sell');})->middleware(['auth', 'verified'])->name('sell');
+Route::get('productView/{id}',[SaleManagement::class,'showProduct']);
+Route::get ('products',[SaleManagement::class,'productPage']);
+Route::post('bSellItem',function (){return view('bSell');})->middleware(['auth', 'verified'])->name('bSellItem');
+Route::post('createSaleB',[SaleManagement::class, 'bSellItem'])->middleware(['auth', 'verified']);
 
 Route::get("thread",[ForumManagement::class,"thread"]);
 Route::view("createThread","createThread")->middleware(['auth', 'verified'])->name('createThread');
@@ -67,3 +76,5 @@ Route::get ("thread/thread",function () {return redirect('thread');});
 Route::get("latestThread",[ForumManagement::class,"latestThread"]);
 Route::get("oldestThread",[ForumManagement::class,"oldestThread"]);
 Route::post("searchThread",[ForumManagement::class,"searchThread"]);
+
+require __DIR__.'/auth.php';
