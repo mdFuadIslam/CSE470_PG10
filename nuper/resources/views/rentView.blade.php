@@ -24,7 +24,7 @@
          <form method="post" action="{{ url('/addToCart') }}">
            @csrf
            <input type="hidden" name="pId" id="pId" value="{{$data->rentID}}">
-           <input type="hidden" name="username" id="username" value="{{$data->username}}">
+           <input type="hidden" name="username" id="username" value="{{Auth::user()->name}}">
            <input type="hidden" name="name" id="name" value="{{$data->name}}">
            <input type="hidden" name="price" id="price" value="{{$data->price}}">
            <input type="hidden" name="type" id="type" value="1">

@@ -11,6 +11,8 @@ use App\Models\cart;
 use App\Models\sale;
 use App\Models\wishlist;
 use App\Models\requestlist;
+use App\Models\trade;
+use App\Models\invoice;
 
 class SaleManagement extends Controller
 {
@@ -40,16 +42,16 @@ class SaleManagement extends Controller
         $pid=$request->pId;
         $data->price=$request->price;
         $data->name=$request->name;
-        $data->duration=$request->duration;
         $data->type=$request->type;
         $type=$request->type;
         $data->save();
-        if ($type==0){
-            return redirect("productView/$pid");
-        }
-        if ($type==1){
-            return redirect("rentView/$pid");
-        }
+        return redirect('cart');
+        #if ($type==0){
+        #    return redirect("productView/$pid");
+        #}
+        #if ($type==1){
+        #    return redirect("rentView/$pid");
+        #}
     }
     function cart(){
         $user=Auth::user();
@@ -151,5 +153,63 @@ class SaleManagement extends Controller
         $data->imgUrl5=$req->img5;
         $data->save();
         return redirect("/dashboard");
+    }
+    function tradeItem(Request $request){
+        $data= new trade;
+        $data->username=$request->username;
+        $data->tUsername=$request->tUsername;
+        $data->name=$request->name;
+        $data->tName=$request->tName;
+        $data->img=$request->img;
+        $data->tImg=$request->tImg;
+        $data->save();
+        return redirect('trades');
+    }
+    function trades(){
+        $user=Auth::user()->name;
+        $data=DB::select("Select * from trades where username='$user' or tUsername='$user'");
+        return view('trade',['data'=>$data]);
+    }
+    function tradeApproval(Request $req){
+        $dataone=DB::table('trades')->where('id',$req->id)->update(['status'=>$req->status]);
+        return redirect ('trades');
+    }
+    function payment(Request $req){
+        $type=$req->pay;
+        if ($type=='pay with bkash'){
+            return view ('payWithBkash',['total'=>$req->total]);
+        }
+        else if ($type=='pay in installment'){
+            return view ('installmentInvoice');
+        }
+    }
+    function bkash(Request $req){
+        $user=Auth::user()->name;
+        $data=DB::select("select * from carts where username='$user'");
+        return view('bkash',['data'=>$data,'number'=>$req->number,'trxId'=>$req->trxID]);
+    }
+    function bkashInvoice(Request $req){
+        $user=Auth::user()->name;
+        $dataone=DB::select("select * from carts where username='$user'");
+        foreach($dataone as $item){
+            $data=new invoice;
+            $data->username=$user;
+            $data->productName=$item->name;
+            $data->price=$item->price;
+            $data->type=$item->type;
+            $type=$item->type;
+            $data->duration=$item->duration;
+            $data->pay=$item->price;
+            $data->due=0;
+            $id=$item->pId;
+            if ($type==0){
+                $deleted=DB::table('sales')->where('saleId',$id)->delete();
+            }
+            else if ($type==1){
+                $deleted=DB::table('rents')->where('rentId',$id)->delete();
+            }
+        }
+        $deleted=DB::table('carts')->where('username',$user)->delete();
+        return redirect('home');
     }
 }

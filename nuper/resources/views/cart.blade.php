@@ -14,7 +14,11 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <div class='loginBox'><table border=1>
+                    <div class='loginBox'>
+                    <?php
+                        $total=0;
+                    ?>
+                    <table border=1>
                         <tr>
                             <th> Username </th>
                             <th> Product Name </th>
@@ -27,10 +31,10 @@
                         <tr>
                             <th> {{$item->username}} </th>
                             <th> {{$item->name}} </th>
-                            <th> {{$item->price}} </th>
+                            <th> {{$price=$item->price}} </th>
                             <?php 
                                 $duration=$item->duration;
-                                if ($duration=='0000-00-00 00:00:00'){  
+                                if ($duration==NULL){  
                                     echo "<th>Permanent</th>";
                                 }
                                 else{
@@ -46,14 +50,21 @@
                                     echo "<th>Renting</th>";
                                 }
                             ?>
-                            <th> {{$item->quantity}} </th>
+                            <th> {{$quantity=$item->quantity}} </th>
                         </tr>
+                        <?php
+                            $total=$total+($quantity*$price);
+                        ?>
                         @endforeach
-                    </table></div>
-                    <ul>Pay with bkash<ul>
-                    <ul>Pay in installments<ul>
-                    <ul>trade items<ul>
-                    <ul>book items<ul>
+                    </table>
+                </div><div class="rightButton">
+                    <ul>Sub-Total: {{$total}}</ul>
+                    <ul><form method='post' action='payment'>
+                        @csrf
+                        <input type="hidden" name="total" id="total" value='$total'>
+                        <input type="submit" name="pay" id="pay" value="pay with bkash">
+                        <input type="submit" name="pay" id="pay" value="pay in installment">
+                    </form></div>
                 </div>
             </div>
         </div>

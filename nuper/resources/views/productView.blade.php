@@ -24,11 +24,10 @@
          <form method="post" action="{{ url('/addToCart') }}">
            @csrf
            <input type="hidden" name="pId" id="pId" value="{{$data->saleId}}">
-           <input type="hidden" name="username" id="username" value="{{$data->username}}">
+           <input type="hidden" name="username" id="username" value="{{Auth::user()->name}}">
            <input type="hidden" name="name" id="name" value="{{$data->name}}">
            <input type="hidden" name="price" id="price" value="{{$data->price}}">
            <input type="hidden" name="type" id="type" value="0">
-           <input type="hidden" name="duration" id="duration" value="0000-00-00 00:00:00">
            <input type="submit" name="add to cart" value="add to cart">
          </form>
          <form method="post" action="{{ url('/addToWishlist') }}">
@@ -37,6 +36,17 @@
            <input type="hidden" name="username" id="username" value="{{$data->username}}">
            <input type="hidden" name="type" id="type" value="0">
            <input type="submit" name="add to wishlist" value="add to wishlist">
+         </form>
+         <form method="post" action="{{ url('/tradeItem') }}">
+           @csrf
+           <input type='text' name='tImg' id='tImg' placeholder="Image URL">
+           <input type='text' name='tName' id='tName' placeholder="Product Name">
+           <input type="hidden" name="tUsername" id="tUsername" value="{{Auth::user()->name}}">
+           <input type="hidden" name="sID" id="sID" value="{{$data->saleId}}">
+           <input type='hidden' name='img' id='img' value="{{$data->imgUrl}}">
+           <input type="hidden" name="username" id="username" value="{{$data->username}}">
+           <input type="hidden" name="name" id="name" value="{{$data->name}}">
+           <input type="submit" name="trade" value="trade">
          </form>
       @endforeach
    </div>

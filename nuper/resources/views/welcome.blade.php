@@ -9,7 +9,7 @@
                      <h1> <span class="blodark"> Nuper </span></h1> <br>
                      use code: "bazinga" for 10% on all sale!
                      <p>Get you dream setup for cheap!!! </p>
-                     <a class="read_more" href="product">Shop now</a>
+                     <a class="read_more" href="products">Shop now</a>
                   </div>
                </div>
                <div class="col-md-4">

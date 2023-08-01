@@ -53,6 +53,14 @@ Route::get("cart",[SaleManagement::class,"cart"])->middleware(['auth', 'verified
 Route::post('addToCart', [SaleManagement::class,'addToCart'])->middleware(['auth', 'verified'])->name('addToCart');
 Route::post('addToWishlist', [SaleManagement::class,'addToWishlist'])->middleware(['auth', 'verified'])->name('addToWishlist');
 
+Route::post('payment',[SaleManagement::class, 'payment'])->middleware(['auth', 'verified'])->name('payment');
+Route::post('bkash',[SaleManagement::class, 'bkash'])->middleware(['auth', 'verified'])->name('bkash');
+Route::post('bkashInvoice',[SaleManagement::class, 'bkashInvoice'])->middleware(['auth', 'verified'])->name('bkashInvoice');
+
+Route::get('trades', [SaleManagement::class,'trades'])->middleware(['auth', 'verified'])->name('trades');
+Route::post('tradeItem', [SaleManagement::class,'tradeItem'])->middleware(['auth', 'verified'])->name('tradeItem');
+Route::post('tradeApproval',[SaleManagement::class, 'tradeApproval'])->middleware(['auth', 'verified']);
+
 Route::get('/rent', function () {return view('rent');})->middleware(['auth', 'verified'])->name('rent');
 Route::post('createRent',[SaleManagement::class, 'createRent'])->middleware(['auth', 'verified'])->name('createRent');
 Route::get('rentView/{id}',[SaleManagement::class,'showRent']);
