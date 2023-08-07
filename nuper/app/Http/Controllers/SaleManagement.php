@@ -180,7 +180,7 @@ class SaleManagement extends Controller
             return view ('payWithBkash',['total'=>$req->total]);
         }
         else if ($type=='pay in installment'){
-            return view ('installmentInvoice');
+            return view ('payWithCard',['total'=>$req->total]);
         }
     }
     function bkash(Request $req){
@@ -211,5 +211,17 @@ class SaleManagement extends Controller
         }
         $deleted=DB::table('carts')->where('username',$user)->delete();
         return redirect('home');
+    }
+    function wishlist(){
+        $user=Auth::user();
+        $username=$user->name;
+        $dataone=DB::select("select * from wishlists left join sales on wishlists.pId=sales.saleId where wishlists.username='$username' and wishlists.type='0'");
+        $datatwo=DB::select("select * from wishlists left join rents on wishlists.pId=rents.rentID where wishlists.username='$username' and wishlists.type='1'");
+        return view('wishlist',['dataone'=>$dataone,'datatwo'=>$datatwo]);
+    }
+    function installmentsInvoice(Request $req){
+        $user=Auth::user()->name;
+        $data=DB::select("select * from carts where username='$user'");
+        return view('installmentsInvoice',['data'=>$data,'cnumber'=>$req->cnumber,'cvv'=>$req->cvv,'date'=>$req->date]);
     }
 }
