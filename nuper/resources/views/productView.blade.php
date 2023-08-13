@@ -1,5 +1,13 @@
 @extends('layouts.master')
 @section('project')
+<?php
+   if (Auth::check()){
+   $username=Auth::user()->name;
+   }
+   else{
+      $username="Guest";
+   }
+?>
 <div id="project" class="project">
    <div class="container">
       <div class="row">
@@ -24,7 +32,7 @@
          <form method="post" action="{{ url('/addToCart') }}">
            @csrf
            <input type="hidden" name="pId" id="pId" value="{{$data->saleId}}">
-           <input type="hidden" name="username" id="username" value="{{Auth::user()->name}}">
+           <input type="hidden" name="username" id="username" value="{{$username}}">
            <input type="hidden" name="name" id="name" value="{{$data->name}}">
            <input type="hidden" name="price" id="price" value="{{$data->price}}">
            <input type="hidden" name="type" id="type" value="0">
@@ -41,7 +49,7 @@
            @csrf
            <input type='text' name='tImg' id='tImg' placeholder="Image URL">
            <input type='text' name='tName' id='tName' placeholder="Product Name">
-           <input type="hidden" name="tUsername" id="tUsername" value="{{Auth::user()->name}}">
+           <input type="hidden" name="tUsername" id="tUsername" value="{{$username}}">
            <input type="hidden" name="sID" id="sID" value="{{$data->saleId}}">
            <input type='hidden' name='img' id='img' value="{{$data->imgUrl}}">
            <input type="hidden" name="username" id="username" value="{{$data->username}}">

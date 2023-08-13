@@ -61,7 +61,7 @@
                     <ul>Sub-Total: {{$total}}</ul>
                     <ul><form method='post' action='payment'>
                         @csrf
-                        <input type="hidden" name="total" id="total" value='$total'>
+                        <input type="hidden" name="total" id="total" value='{{$total}}'>
                         <input type="submit" name="pay" id="pay" value="pay with bkash">
                         <input type="submit" name="pay" id="pay" value="pay in installment">
                     </form></div>
