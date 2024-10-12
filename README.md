@@ -10,8 +10,8 @@ TO BE ADDED
 ## Key Features
 
 - **Guest Browsing:** Users can browse listings with or without an account.
-- **User Authentication:** Logging in unlocks features like buying, selling, wishlisting, and reviewing.
-- **Sorting:** Easily sort items by name, post time, tag, and more.
+- **User Authentication:** Logging in unlocks features like buying, selling, wishlisting.
+- **Sorting:** Easily sort items by name, post time, tag.
 
 ## Project Highlights
 
