@@ -5,13 +5,13 @@ Welcome to my e-commerce website project on GitHub! This web application offers 
 
 ## Demonstration
 
-TO BE ADDED
+[https://youtu.be/nNwHEPpRpV8]
 
 ## Key Features
 
 - **Guest Browsing:** Users can browse listings with or without an account.
-- **User Authentication:** Logging in unlocks features like buying, selling, wishlisting, and reviewing.
-- **Sorting:** Easily sort items by name, post time, tag, and more.
+- **User Authentication:** Logging in unlocks features like buying, selling, wishlisting.
+- **Sorting:** Easily sort items by name, post time, tag.
 
 ## Project Highlights
 
