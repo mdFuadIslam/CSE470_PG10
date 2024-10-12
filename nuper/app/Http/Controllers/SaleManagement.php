@@ -43,6 +43,7 @@ class SaleManagement extends Controller
         $data->price=$request->price;
         $data->name=$request->name;
         $data->type=$request->type;
+        $data->duration=$request->duration;
         $type=$request->type;
         $data->save();
         return redirect('cart');

@@ -17,7 +17,7 @@
     <p>Title=>{{$thread->threadName}}</P>
     <p>Owner=>{{$thread->username}}</P>
     <p>Content=>{{$thread->threadContent}}</P>
-    <form method="post" action="upVote">
+    <!-- <form method="post" action="upVote">
         @csrf
         <input type="hidden" name="id" value="threadId">
         {{$thread->upVote}}
@@ -28,7 +28,7 @@
         <input type="hidden" name="id" value="threadId">
         {{$thread->downVote}}
         <input type="submit" name="downVote" value='downVote'>
-    </form>
+    </form> -->
     </div>
     <div class="news">
         <div class="container">
@@ -64,7 +64,7 @@ if ($thread->commenter!=NULL){
     ?>
 <p>User=>{{$thread->commenter}}</P>
 <p>Comment=>{{$thread->comment}}</P>
-<form method="post" action="upCVote">
+<!-- <form method="post" action="upCVote">
     @csrf
     <input type="hidden" name="id" value="threadId">
     {{$thread->upCVote}}
@@ -75,7 +75,7 @@ if ($thread->commenter!=NULL){
     <input type="hidden" name="id" value="threadId">
     {{$thread->downCVote}}
     <input type="submit" name="downCVote" value='downCVote'>
-</form>
+</form> -->
 <?php
 }
 ?>

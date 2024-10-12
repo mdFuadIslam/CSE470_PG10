@@ -16,8 +16,9 @@
 @foreach($data as $thread)
 <p>Title=>{{$thread->threadName}}</P>
 <p>Owner=>{{$thread->username}}</P>
+<p>Thread ID=>{{$thread->threadID}}</P>
 <p>Content=>{{$thread->threadContent}}</P>
-<form method="post" action="upVote">
+<!-- <form method="post" action="upVote">
     @csrf
     <input type="hidden" name="id" value="threadId">
     {{$thread->upVote}}
@@ -28,7 +29,7 @@
     <input type="hidden" name="id" value="threadId">
     {{$thread->downVote}}
     <input type="submit" name="downVote" value='downVote'>
-</form>
+</form> -->
 <form method="post" action="deleteThread">
     @csrf
     <input type="hidden" name="id" value="{{$thread->threadID}}">
@@ -50,10 +51,7 @@
 </div>
 <form action="comment" method="post">
     @csrf
-    <?php
-    $id=Auth::user()->name;
-    ?>
-    <input type='hidden' name="threadID" value="{{$id}}">
+    <input type='hidden' name="threadID" value="{{$thread->threadID}}">
     <div class="loginBox">
     Comment:
     <textarea name="threadComment" rows="2" cols="60"></textarea>
@@ -83,7 +81,7 @@ if ($username!=$commenter){
 }
 ?>
 <p>Comment=>{{$thread->comment}}</P>
-<form method="post" action="upCVote">
+<!-- <form method="post" action="upCVote">
     @csrf
     <input type="hidden" name="id" value="threadId">
     {{$thread->upCVote}}
@@ -94,7 +92,7 @@ if ($username!=$commenter){
     <input type="hidden" name="id" value="threadId">
     {{$thread->downCVote}}
     <input type="submit" name="downCVote" value='downCVote'>
-</form>
+</form> -->
 <?php
 }
 ?>

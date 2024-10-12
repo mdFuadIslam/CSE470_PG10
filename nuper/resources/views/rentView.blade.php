@@ -14,6 +14,7 @@
       @foreach ($product as $data)
          <div><ul><img  src="{{$data->imgUrl}}" alt="#" width='300' height='300'/></ul></div>
          <h3><ul>Name: {{$data->name}}</ul>
+         <ul>Duration: {{$data->duration}}</ul>
          <ul>Price: {{$data->price}}</ul>
          <ul>Description: {{$data->description}}</ul>
          <ul>Owner: {{$data->username}}</ul>
@@ -34,7 +35,7 @@
          <form method="post" action="{{ url('/addToWishlist') }}">
            @csrf
            <input type="hidden" name="pId" id="pId" value="{{$data->rentID}}">
-           <input type="hidden" name="username" id="username" value="{{$data->username}}">
+           <input type="hidden" name="username" id="username" value="{{Auth::user()->name}}">
            <input type="hidden" name="type" id="type" value="1">
            <input type="submit" name="add to wishlist" value="add to wishlist">
          </form>
